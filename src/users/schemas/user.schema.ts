@@ -6,7 +6,7 @@ export type UserDocument = User & Document;
 @Schema({ collection: 'Users' })
 export class User {
   @Prop()
-  userId: string;
+  userId?: string;
 
   @Prop()
   email: string;

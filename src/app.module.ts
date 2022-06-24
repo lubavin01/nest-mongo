@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DatabaseModule } from './users/database/database.module';
 import { UsersModule } from './users/users.module';
 
-const MONGO_CONNECTION =
-  'mongodb+srv://nikolay_l:qwerqweruiop123@nestcluster.nowi2.mongodb.net/?retryWrites=true&w=majority';
-
 @Module({
-  imports: [MongooseModule.forRoot(MONGO_CONNECTION), UsersModule],
+  imports: [
+    UsersModule,
+    DatabaseModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

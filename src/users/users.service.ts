@@ -4,6 +4,7 @@ import { UsersRepository } from './users.repository';
 
 import { v4 as uuidv4 } from 'uuid';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { FilterQuery } from 'mongoose';
 
 @Injectable()
 export class UsersService {
@@ -11,6 +12,14 @@ export class UsersService {
 
   async getUserById(userId: string): Promise<User> {
     return this.usersRepository.findOne({ userId });
+  }
+
+  async getUserByEmail(email: string): Promise<User> {
+    return this.usersRepository.findOne({ email });
+  }
+
+  async getOneUser(search: FilterQuery<User>): Promise<User> {
+    return this.usersRepository.findOne(search);
   }
 
   async getUsers(): Promise<User[]> {
@@ -26,6 +35,7 @@ export class UsersService {
       userId: uuidv4(),
       email,
       age,
+      password: '123',
       favouriteFoods,
     });
   }

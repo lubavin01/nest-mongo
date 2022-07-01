@@ -9,5 +9,6 @@ export const userStub = (): User => {
     age: 25,
     email: 'testuser@mail.com',
     favouriteFoods: ['pancakes', 'meat'],
+    password: '123',
   };
 };

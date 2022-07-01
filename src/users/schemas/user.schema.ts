@@ -16,6 +16,9 @@ export class User {
 
   @Prop([String])
   favouriteFoods: string[];
+
+  @Prop()
+  password: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
